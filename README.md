@@ -9,13 +9,14 @@ This application will be used in a large conference that had more than 10,000 pe
 This event will be a broadcast online and in person,more than 10,000 people in the audience will register their e-mails to guarantee their participation in the event.
 -------------------------------------------------------------------------------
 High level Solution:
+
 We used in AWS, Elastic Beanstalk services to deploy the web application, DynamoDB and to store emails, CloudFront to cache static and dynamic files in an Edge Location close to the user.
 ------------------------------------------------------------------------
 solution -architecture
 ![sol-arch](https://user-images.githubusercontent.com/26733874/190853290-09175829-26a0-4c38-8b22-49164c97b3ba.png)
 
 
-Implementation Steps: (Planning document is attached in the project- Can be used for reference)
+**Implementation Steps:** (Planning document is attached in the project- Can be used for reference)
 
 1. Create DynamoDB 
      -- name : users
