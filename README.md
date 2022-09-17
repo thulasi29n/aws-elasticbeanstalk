@@ -33,7 +33,7 @@ solution -architecture
       2.8) Load Balancer -- choose settings as default 
       2.9) create APP.
 
-3. Once the deploy completes, access the application and simulate a record insertion -- you will encounter error.
+3. Once the deploy completes, access the application(using public-ip of EC2 instance) and simulate a record insertion -- you will encounter error.
 
 4. Investigate error logs -- ( you will most probably get Access denied exception)
 
@@ -41,10 +41,11 @@ solution -architecture
      5.1) IAM Role -- Create a new role and assign permission 'AmazonDynamoDBFullAccess'. 
         ( This name of the role can be copied bean syalk instance and can be mapped) (refer screenshots pdf for more info)
 
-6. Try to insert the registry once again. It should go through with out any issues this time.
+6. Try to insert the registry once again(using public-ip of EC2 instance). It should go through with out any issues this time.
 
 7. Create Cloud Front Distribution 
      7.1) Allowed HTTP methods: GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE
+     7.2) Attach Cloudfront to Load-balancer created in step 2.8
 
 8. SSH into EC2 instance --> ssh ec2-user@<PUBLIC_IP> -i <ssh_private_key> 
      8.1) Install stress tool to run stress test sudo amazon-linux-extras install epel -y sudo yum install stress -y 
@@ -53,6 +54,7 @@ solution -architecture
 
 9. Explore the resources created by the AWS Elastic Beanstalk (EC2, ELB, Auto Scaling Group, Cloud Watch resources) and 
       also the auto scaling process ---> Observe the instance status in BeanStalk 
+   9.0) Test Application using Cloudfront URL.
    9.1) instance which is in stress whill show as degraded in the monitoring. 
    9.2) new instance will be created and added to autoscaling group. 
    9.3) newly created instance will be attached to load balancer.
